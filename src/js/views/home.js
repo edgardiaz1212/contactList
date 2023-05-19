@@ -1,43 +1,42 @@
 import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { Link } from "react-router-dom";
 
 export const Home = () => (
   <>
     <div className="d-grid gap-2 d-md-flex justify-content-md-end p-5">
-      <button className="btn btn-success" type="button">
+      <Link to="/demo">
+	  <button className="btn btn-success" type="button">
         {" "}
         Add new contact
       </button>
+	  </Link>
     </div>
 
     <div className="container ">
       <ul className=" list-group list-group-flush">
-        <li className="list-group-item">
-          An item
-          <img src="rigo-baby.jpg" class="rounded-circle" alt="rigo"></img>
-        </li>
-
-        {/* <li className="list-group-item"> */}
-
-        <li className="card mb-3">
+      
+           <li className="card mb-3">
           <div className="row g-0">
             <div className="col-2 p-5">
               <img
                 src="rigo-baby.jpg"
                 class="img-fluid rounded-circle"
-                alt="..."
+                alt="Contact"
               />
             </div>
-            <div className="col-8 border border-success m-2">
-              <div className="card-body">
-                <h4 className="card-title border dorder-danger">Daniel</h4>
+            <div className="col-8 m-2">
+              <div className="card-body text-secondary">
+                <h4 className="card-title">Daniel</h4>
                 <p className="card-text">
                   <i className="fa-solid fa-location-dot"></i> direccion
                 </p>
                 <p className="card-text">
+				<small className="text-body-secondary ">
                   <i className="fa-solid fa-phone"></i> telefono
-                </p>
+                </small>
+				</p>
                 <span className="card-text">
                   <small className="text-body-secondary">
                     <i className="fa-sharp fa-solid fa-envelope"></i> email
@@ -45,19 +44,17 @@ export const Home = () => (
                 </span>
               </div>
             </div>
-            <div className="col-1  border border-danger">
-              <i className="fa-solid fa-pencil"></i>
-              <i className="fa-solid fa-trash-can"></i>
+            <div className="col-1 text-end ">
+              <Link><i className="fa-solid fa-pencil p-4"></i></Link>
+			
+              <Link><i className="fa-solid fa-trash-can"></i></Link>
             </div>
           </div>
         </li>
 
-        {/* </li> */}
-        <li className="list-group-item">A third item</li>
+        
       </ul>
     </div>
-    <div className="border boder-danger">hola</div>
-    <div className="border boder-danger">hola</div>
-    <div className="border boder-danger">hola</div>
+  
   </>
 );
