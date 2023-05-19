@@ -1,10 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from "react-router-dom";
 
-const BASEURL = `https://assets.breatheco.de/apis/fake/contact/agenda`
-
-const [name,setName] = useState("")
-
 const getAllNames = async () => {
     try {
       let response = await fetch(`${URLBASE}`);

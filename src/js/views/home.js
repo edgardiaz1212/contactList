@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const Home = () => (
   <>
     <div className="d-grid gap-2 d-md-flex justify-content-md-end p-5">
-      <Link to="/demo">
+      <Link to="/Contact">
 	  <button className="btn btn-success" type="button">
         {" "}
         Add new contact

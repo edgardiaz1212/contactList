@@ -6,7 +6,10 @@ import { Context } from "../store/appContext";
 import "../../styles/demo.css";
 import ContactCard from "../component/ContactCard.jsx";
 
-export const Demo = () => {
+
+
+
+export const Contact = () => {
   const { store, actions } = useContext(Context);
 
   return (
