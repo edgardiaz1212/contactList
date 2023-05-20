@@ -1,6 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
+
 		store: {
+			BASEURL : `https://assets.breatheco.de/apis/fake/contact/agenda`,
+		
 			demo: [
 				{
 					title: "FIRST",
@@ -37,7 +40,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+
+			
 		}
 	};
 };

@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-import { Home } from "./views/home";
 import { Contact } from "./views/Contact.jsx";
+import { AddContact } from "./views/AddContact.jsx";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
@@ -19,8 +19,8 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/Contact" element={<Contact />} />
+						<Route path="/" element={<Contact />} />
+						<Route path="/AddContact" element={<AddContact />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>

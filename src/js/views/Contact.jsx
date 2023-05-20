@@ -1,53 +1,62 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
+import rigoImage from "../../img/rigo-baby.jpg";
+import "../../styles/home.css";
 import { Link } from "react-router-dom";
+import Modal from "../component/Modal.jsx";
 
-import { Context } from "../store/appContext";
-
-import "../../styles/demo.css";
-import ContactCard from "../component/ContactCard.jsx";
-
-
-
-
-export const Contact = () => {
-  const { store, actions } = useContext(Context);
-
-  return (
-	<>
-    <div className="container">
-      <ul className="list-group">
-        {store.demo.map((item, index) => {
-          return (
-            <li
-              key={index}
-              className="list-group-item d-flex justify-content-between"
-              style={{ background: item.background }}
-            >
-              <Link to={"/single/" + index}>
-                <span>Link to: {item.title}</span>
-              </Link>
-              {
-                // Conditional render example
-                // Check to see if the background is orange, if so, display the message
-                item.background === "orange" ? (
-                  <p style={{ color: item.initial }}>
-                    Check store/flux.js scroll to the actions to see the code
-                  </p>
-                ) : null
-              }
-              <button
-                className="btn btn-success"
-                onClick={() => actions.changeColor(index, "orange")}
-              >
-                Change Color
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+export const Contact = () => (
+  <>
+    <div className="d-grid gap-2 d-md-flex justify-content-md-end p-5">
+      <Link to="/AddContact">
+	  <button className="btn btn-success" type="button">
+        {" "}
+        Add new contact
+      </button>
+	  </Link>
     </div>
 
-<ContactCard/>
-</>
-  );
-};
+    <div className="container ">
+      <ul className=" list-group list-group-flush">
+      
+           <li className="card mb-3">
+          <div className="row g-0">
+            <div className="col-2 p-5">
+              <img
+                src="rigo-baby.jpg"
+                className="img-fluid rounded-circle"
+                alt="Contact"
+              />
+            </div>
+            <div className="col-8 m-2">
+              <div className="card-body text-secondary">
+                <h4 className="card-title">Daniel</h4>
+                <p className="card-text">
+                  <i className="fa-solid fa-location-dot"></i> direccion
+                </p>
+                <p className="card-text">
+				<small className="text-body-secondary ">
+                  <i className="fa-solid fa-phone"></i> telefono
+                </small>
+				</p>
+                <span className="card-text">
+                  <small className="text-body-secondary">
+                    <i className="fa-sharp fa-solid fa-envelope"></i> email
+                  </small>
+                </span>
+              </div>
+            </div>
+            <div className="col-1 text-end ">
+              <Link><i className="fa-solid fa-pencil p-4"></i></Link>
+			
+              <Link><i className="fa-solid fa-trash-can"></i></Link>
+              <Modal/>
+            </div>
+          </div>
+        </li>
+
+        
+      </ul>
+    </div>
+  
+  </>
+);

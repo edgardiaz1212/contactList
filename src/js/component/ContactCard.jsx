@@ -1,26 +1,12 @@
 import React, {useState} from 'react'
 import { Link } from "react-router-dom";
 
-const getAllNames = async () => {
-    try {
-      let response = await fetch(`${URLBASE}`);
-      let data = await response.json();
-      if (response.ok) {
-        
-        
-      } else {
-       
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-
 const ContactCard = () => {
   return (
    <>
+   
    <div className="container">
+    <h1 className='text-center'>Add a new contact</h1>
     <div className="mb-3">
       <label for="fullname" className="form-label">
         Full name
