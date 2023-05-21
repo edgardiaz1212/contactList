@@ -1,24 +1,34 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import Modal from "../component/Modal.jsx";
+import { Context } from "../store/appContext.js";
 
-export const Contact = () => (
+export const Contact = () => {
+
+  const { store, actions } = useContext(Context)
+  
+  const {contact} = store
+  
+  const [show, setShow] = useState(false); //Show the modal when clicked, set to false when finished.
+  
+  
+  return (
   <>
     <div className="d-grid gap-2 d-md-flex justify-content-md-end p-5">
       <Link to="/AddContact">
-	  <button className="btn btn-success" type="button">
-        {" "}
-        Add new contact
-      </button>
-	  </Link>
+        <button className="btn btn-success" type="button">
+          {" "}
+          Add new contact
+        </button>
+      </Link>
     </div>
-
+{actions.allContacs.map((item,index) => {
+  return(
     <div className="container ">
       <ul className=" list-group list-group-flush">
-      
-           <li className="card mb-3">
+        <li className="card mb-3">
           <div className="row g-0">
             <div className="col-2 p-5">
               <img
@@ -29,34 +39,35 @@ export const Contact = () => (
             </div>
             <div className="col-8 m-2">
               <div className="card-body text-secondary">
-                <h4 className="card-title">Daniel</h4>
+                <h4 className="card-title">{contact.full_name}</h4>
                 <p className="card-text">
-                  <i className="fa-solid fa-location-dot"></i> direccion
+                  <i className="fa-solid fa-location-dot"></i> {contact.address}
                 </p>
                 <p className="card-text">
-				<small className="text-body-secondary ">
-                  <i className="fa-solid fa-phone"></i> telefono
-                </small>
-				</p>
+                  <small className="text-body-secondary ">
+                    <i className="fa-solid fa-phone"></i> {contact.phone}
+                  </small>
+                </p>
                 <span className="card-text">
                   <small className="text-body-secondary">
-                    <i className="fa-sharp fa-solid fa-envelope"></i> email
+                    <i className="fa-sharp fa-solid fa-envelope"></i> {contact.email}
                   </small>
                 </span>
               </div>
             </div>
             <div className="col-1 text-end ">
-              <Link><i className="fa-solid fa-pencil p-4"></i></Link>
-			
-              <Link><i className="fa-solid fa-trash-can"></i></Link>
-              <Modal/>
+              <Link to="/AddContact">
+                <i className="fa-solid fa-pencil p-4"></i>
+              </Link>
+
+              <Link>
+                <i className="fa-solid fa-trash-can"></i>
+              </Link>
             </div>
           </div>
         </li>
-
-        
       </ul>
-    </div>
-  
-  </>
-);
+    </div>)})}
+
+  </>)
+}

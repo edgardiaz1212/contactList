@@ -2,8 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 
 		store: {
-			BASEURL : `https://assets.breatheco.de/apis/fake/contact/agenda`,
-		
+			BASEURL: `https://assets.breatheco.de/apis/fake/contact/agenda`,
+
 			demo: [
 				{
 					title: "FIRST",
@@ -15,7 +15,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			contact: {
+				id: "473",
+				agenda_slug: "eduuuuu",
+				full_name: "Eduardo Puermas",
+				email: "epuermas@gmail.com",
+				phone: "305-423-3800",
+				address: "66 W Flagler St #900, Miami, FL 33130",
+				created_at: "2019-11-22 01:02:25"
+			}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -41,10 +50,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+			saludar : () =>{
+				console.log("hola")},
 
 			
+		allContacts: async () =>{ {
+			 {
+				try{
+					let response = await fetch(`https://assets.breatheco.de/apis/fake/contact/agenda`);
+					let data = await response.json();
+					console.log(data)
+
+				} catch (err) {
+					console.log(err);
+				}
+			};
 		}
-	};
-};
+	}
+
+}
+}};
 
 export default getState;

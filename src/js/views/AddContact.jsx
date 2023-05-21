@@ -4,14 +4,15 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
-import ContactCard from "../component/ContactCard.jsx";
+
 
 
 
 
 export const AddContact = () => {
   const { store, actions } = useContext(Context);
-
+  const [contacts, Setcontacts] = useState({})
+  
   return (
 	<>
     <div className="container">
@@ -47,7 +48,72 @@ export const AddContact = () => {
       </ul>
     </div>
 
-<ContactCard/>
+    <div className="container">
+    <h1 className='text-center'>Add a new contact</h1>
+    <div className="mb-3">
+      <label for="fullname" className="form-label">
+        Full name
+      </label>
+      <div className="input-group">
+        <input
+          type="text"
+          className="form-control"
+          id="fullname"
+          placeholder="Fullname"
+        />
+      </div>
+    </div>
+
+    <div className="mb-3">
+      <label for="email" className="form-label">
+        Email
+      </label>
+      <div className="input-group">
+        <input
+          type="text"
+          className="form-control"
+          id="email"
+          placeholder="Enter email"
+        />
+      </div>
+    </div>
+
+    <div className="mb-3">
+      <label for="phone" className="form-label">
+        Phone
+      </label>
+      <div className="input-group">
+        <input
+          type="text"
+          className="form-control"
+          id="phone"
+          placeholder="Enter phone"
+        />
+      </div>
+    </div>
+
+    <div className="mb-3">
+      <label for="address" className="form-label">
+        Address
+      </label>
+      <div className="input-group">
+        <input
+          type="text"
+          className="form-control"
+          id="address"
+          placeholder="Enter address"
+        />
+      </div>
+    </div>
+
+    <br />
+    <div className="d-grid gap-2">
+      <button className="btn btn-primary mb-2" type="button" onClick={() =>actions.allContacts()}>
+        Save
+      </button>
+    </div>
+    <Link to="/"> or get back to contacts</Link>
+  </div>
 </>
   );
 };
