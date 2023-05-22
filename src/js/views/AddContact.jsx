@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-
 import { Context } from "../store/appContext";
-
 import "../../styles/demo.css";
 
 let initalValue = {
@@ -10,36 +8,34 @@ let initalValue = {
   email: "",
   phone: "",
   address: "",
-  agenda_slug: "eddiaz"
-}
+  agenda_slug: "eddiaz",
+};
 export const AddContact = () => {
   const { store, actions } = useContext(Context);
   const [inputContacts, setInputContacts] = useState(initalValue);
 
-  const params = useParams(); 
+  const params = useParams();
 
- //otra forma de usar, destructurado: 
- //const {id} =useParams()
+  //otra forma de usar, destructurado:
+  //const {id} =useParams()
 
-const handleInputs = (event) => {
+  const handleInputs = (event) => {
     const { name, value } = event.target;
-    setInputContacts({ ...inputContacts, [name]: value })
-    ;
+    setInputContacts({ ...inputContacts, [name]: value });
   };
   const handleSave = () => {
-    if(params.id=="none"){
-      actions.addNewContact(inputContacts)
+    if (params.id == "none") {
+      actions.addNewContact(inputContacts);
     } else {
-      actions.updateContact(params.id, inputContacts)
+      actions.updateContact(params.id, inputContacts);
     }
-      
-    
-    setInputContacts(initalValue)
+  setInputContacts(initalValue)
+    ;
   };
 
   return (
     <>
-        <div className="container">
+      <div className="container">
         <h1 className="text-center">Add a new contact</h1>
         <div className="mb-3">
           <label htmlFor="fullname" className="form-label">

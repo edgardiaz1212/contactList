@@ -3,13 +3,13 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       BASEURL: `https://assets.breatheco.de/apis/fake/contact`,
       user: "eddiaz",
-     
 
       contacts: [],
     },
+
     actions: {
       // Use getActions to call a function within a fuction
-     
+
       //para traer todos los contactos
       allContacts: async () => {
         try {
@@ -33,7 +33,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              
             },
             body: JSON.stringify(newContact),
           });
@@ -47,17 +46,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       //borrar contacto
       deleteContact: async (id) => {
         try {
-          let response = await fetch(
-            `${getStore().BASEURL}/${id}`,
-            {
-              method: "DELETE",
-              headers: { "Content-Type": "application/json" },
-            }
-          );
+          let response = await fetch(`${getStore().BASEURL}/${id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+          });
           if (response.ok) {
             getActions().allContacts();
           }
-
         } catch (error) {
           console.log(error);
         }
@@ -70,9 +65,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newContact),
-          })
+          });
           if (response.ok) {
-            getActions().allContacts()}
+            getActions().allContacts();
+          }
         } catch (error) {
           console.log(error);
         }
