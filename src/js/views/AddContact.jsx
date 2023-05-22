@@ -15,8 +15,8 @@ export const AddContact = () => {
   });
 
   const handleInputs = (event) => {
-    const { id, value } = event.target;
-    setInputContacts({ ...inputContacts, [id]: value })
+    const { name, value } = event.target;
+    setInputContacts({ ...inputContacts, [name]: value })
     ;
   };
   const handleSave = () => {
@@ -71,6 +71,7 @@ export const AddContact = () => {
               id="fullname"
               placeholder="Fullname"
               onChange={handleInputs}
+              name="full_name"
             />
           </div>
         </div>
@@ -86,6 +87,7 @@ export const AddContact = () => {
               id="email"
               placeholder="Enter email"
               onChange={handleInputs}
+              name="email"
             />
           </div>
         </div>
@@ -101,6 +103,7 @@ export const AddContact = () => {
               id="phone"
               placeholder="Enter phone"
               onChange={handleInputs}
+              name="phone"
             />
           </div>
         </div>
@@ -116,6 +119,7 @@ export const AddContact = () => {
               id="address"
               placeholder="Enter address"
               onChange={handleInputs}
+              name="address"
             />
           </div>
         </div>

@@ -64,16 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           let response = await fetch(`${getStore().BASEURL}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(...store.contacts, {
-              // id: "",
-              // agenda_slug: "",
-              full_name: "newContact.full_name",
-              email: "newContact.email",
-              agenda_slug: `${store.user}`,
-              phone: "newContact.phone",
-              address: "newContact.address",
-              // created_at: "",
-            }),
+            body: JSON.stringify(newContact),
           });
           if (response.ok) {
             getActions().allContacts();
