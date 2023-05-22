@@ -1,67 +1,48 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
+let initalValue = {
+  full_name: "",
+  email: "",
+  phone: "",
+  address: "",
+  agenda_slug: "eddiaz"
+}
 export const AddContact = () => {
   const { store, actions } = useContext(Context);
-  const [inputContacts, setInputContacts] = useState({
-    full_name: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
+  const [inputContacts, setInputContacts] = useState(initalValue);
 
-  const handleInputs = (event) => {
+  const params = useParams(); 
+
+ //otra forma de usar, destructurado: 
+ //const {id} =useParams()
+
+const handleInputs = (event) => {
     const { name, value } = event.target;
     setInputContacts({ ...inputContacts, [name]: value })
     ;
   };
   const handleSave = () => {
-    actions.addNewContact(inputContacts);
+    if(params.id=="none"){
+      actions.addNewContact(inputContacts)
+    } else {
+      actions.updateContact(params.id, inputContacts)
+    }
+      
+    
+    setInputContacts(initalValue)
   };
 
   return (
     <>
-      <div className="container">
-        <ul className="list-group">
-          {store.demo.map((item, index) => {
-            return (
-              <li
-                key={index}
-                className="list-group-item d-flex justify-content-between"
-                style={{ background: item.background }}
-              >
-                <Link to={"/single/" + index}>
-                  <span>Link to: {item.title}</span>
-                </Link>
-                {
-                  // Conditional render example
-                  // Check to see if the background is orange, if so, display the message
-                  item.background === "orange" ? (
-                    <p style={{ color: item.initial }}>
-                      Check store/flux.js scroll to the actions to see the code
-                    </p>
-                  ) : null
-                }
-                <button
-                  className="btn btn-success"
-                  onClick={() => actions.changeColor(index, "orange")}
-                >
-                  Change Color
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-
-      <div className="container">
+        <div className="container">
         <h1 className="text-center">Add a new contact</h1>
         <div className="mb-3">
-          <label for="fullname" className="form-label">
+          <label htmlFor="fullname" className="form-label">
             Full name
           </label>
           <div className="input-group">
@@ -77,7 +58,7 @@ export const AddContact = () => {
         </div>
 
         <div className="mb-3">
-          <label for="email" className="form-label">
+          <label htmlFor="email" className="form-label">
             Email
           </label>
           <div className="input-group">
@@ -93,7 +74,7 @@ export const AddContact = () => {
         </div>
 
         <div className="mb-3">
-          <label for="phone" className="form-label">
+          <label htmlFor="phone" className="form-label">
             Phone
           </label>
           <div className="input-group">
@@ -109,7 +90,7 @@ export const AddContact = () => {
         </div>
 
         <div className="mb-3">
-          <label for="address" className="form-label">
+          <label htmlFor="address" className="form-label">
             Address
           </label>
           <div className="input-group">

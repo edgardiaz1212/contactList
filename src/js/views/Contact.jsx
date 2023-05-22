@@ -9,13 +9,13 @@ export const Contact = () => {
   const { store, actions } = useContext(Context);
 
   const { contacts } = store;
-  const [contactCard, setContactCard] = useState({});
+;
   const [show, setShow] = useState(false); //Show the modal when clicked, set to false when finished.
 
   return (
     <>
       <div className="d-grid gap-2 d-md-flex justify-content-md-end p-5">
-        <Link to="/AddContact">
+        <Link to="/AddContact/none">
           <button className="btn btn-success" type="button">
             {" "}
             Add new contact
@@ -58,13 +58,13 @@ export const Contact = () => {
                     </div>
                   </div>
                   <div className="col-1 text-end ">
-                    <Link to="/AddContact">
+                    <Link to={`/AddContact/${item.id}`}>
                       <i className="fa-solid fa-pencil p-4"></i>
                     </Link>
 
-                    <Link >
-                      <i className="fa-solid fa-trash-can" onclick= {actions.deleteContact()}></i>
-                    </Link>
+                    
+                      <i className="fa-solid fa-trash-can" onClick= {()=> actions.deleteContact(item.id)}></i>
+                    
                   </div>
                 </div>
               </li>
