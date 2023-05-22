@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       BASEURL: `https://assets.breatheco.de/apis/fake/contact`,
 
-	  
+	  user : 'eddiaz',
 	
 
       demo: [
@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	  //para traer todos los contactos
       allContacts: async () => {
         try {
-          let response = await fetch(`${getStore().BASEURL}/agenda/newPulco`);
+          let response = await fetch(`${getStore().BASEURL}/agenda/${getStore().user}`);
 
           if (response.ok) {
             let data = await response.json();
@@ -62,16 +62,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       addNewContact: async (newContact) => {
         try {
           let response = await fetch(`${getStore().BASEURL}`, {
-            method: "PUT",
+            method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(...store.contacts, {
-              id: "",
-              agenda_slug: "",
+              // id: "",
+              // agenda_slug: "",
               full_name: "newContact.full_name",
               email: "newContact.email",
+              agenda_slug: `${store.user}`,
               phone: "newContact.phone",
               address: "newContact.address",
-              created_at: new Date().toISOString(),
+              // created_at: "",
             }),
           });
           if (response.ok) {

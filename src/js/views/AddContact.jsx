@@ -16,7 +16,8 @@ export const AddContact = () => {
 
   const handleInputs = (event) => {
     const { id, value } = event.target;
-    setInputContacts({ ...inputContacts, [id]: value });
+    setInputContacts({ ...inputContacts, [id]: value })
+    ;
   };
   const handleSave = () => {
     actions.addNewContact(inputContacts);
