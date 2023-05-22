@@ -63,7 +63,7 @@ export const Contact = () => {
                     </Link>
 
                     <Link >
-                      <i className="fa-solid fa-trash-can"></i>
+                      <i className="fa-solid fa-trash-can" onclick= {actions.deleteContact()}></i>
                     </Link>
                   </div>
                 </div>

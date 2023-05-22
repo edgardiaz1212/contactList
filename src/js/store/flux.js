@@ -86,9 +86,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 //borrar contacto, como definir el id, agregar  como prop y de alli anadirla?
-	  deleteContatc : async (id) =>{
+	  deleteContact : async (id) =>{
 		try {
-      let response = await fetch(`${getStore().BASEURL}/{id}`,{
+      let response = await fetch(`${getStore().BASEURL}/${getStore().contacts.id}`,{
         method:DELETE,
         headers: { "Content-Type": "application/json" }
       })
@@ -99,7 +99,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	  },
 
     //actualizar un contacto
-    updateContat :async ()=> {
+    updateContact :async ()=> {
       try {
         let response = await fetch(`${getStore().BASEURL}/id`,{
           method:PUT,
