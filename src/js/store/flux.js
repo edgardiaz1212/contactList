@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       BASEURL: `https://assets.breatheco.de/apis/fake/contact`,
 
 	  user : 'eddiaz',
+    id: '4409', 
 	
 
       demo: [
@@ -54,11 +55,13 @@ const getState = ({ getStore, getActions, setStore }) => {
             let data = await response.json();
             setStore({ contacts: data });
             console.log(data);
+            setInputContacts()
           } else console.log("error al traer contactos");
         } catch (err) {
           console.log(err);
         }
       },
+      // para agregar nuevos contactos
       addNewContact: async (newContact) => {
         try {
           let response = await fetch(`${getStore().BASEURL}`, {
@@ -82,14 +85,41 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
         }
       },
-
-	  updateContatc : async () =>{
+//borrar contacto, como definir el id, agregar  como prop y de alli anadirla?
+	  deleteContatc : async (id) =>{
 		try {
+      let response = await fetch(`${getStore().BASEURL}/{id}`,{
+        method:DELETE,
+        headers: { "Content-Type": "application/json" }
+      })
 			
 		} catch (error) {
 			console.log(error)
 		}
-	  }
+	  },
+
+    //actualizar un contacto
+    updateContat :async ()=> {
+      try {
+        let response = await fetch(`${getStore().BASEURL}/id`,{
+          method:PUT,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(...store.contacts, {
+            // id: "",
+            // agenda_slug: "",
+            full_name: "newContact.full_name",
+            email: "newContact.email",
+            agenda_slug: `${store.user}`,
+            phone: "newContact.phone",
+            address: "newContact.address",
+            // created_at: "",
+          })
+        })
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }
     },
   };
 };
