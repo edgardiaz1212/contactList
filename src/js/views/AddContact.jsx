@@ -26,10 +26,12 @@ export const AddContact = () => {
   const handleSave = () => {
     if (params.id == "none") {
       actions.addNewContact(inputContacts);
+      setInputContacts(initalValue)
     } else {
       actions.updateContact(params.id, inputContacts);
+      setInputContacts(initalValue)
     }
-  setInputContacts(initalValue)
+  
     ;
   };
 
@@ -49,6 +51,7 @@ export const AddContact = () => {
               placeholder="Fullname"
               onChange={handleInputs}
               name="full_name"
+              value={inputContacts.full_name}
             />
           </div>
         </div>
@@ -65,6 +68,7 @@ export const AddContact = () => {
               placeholder="Enter email"
               onChange={handleInputs}
               name="email"
+              value={inputContacts.email}
             />
           </div>
         </div>
@@ -81,6 +85,7 @@ export const AddContact = () => {
               placeholder="Enter phone"
               onChange={handleInputs}
               name="phone"
+              value={inputContacts.phone}
             />
           </div>
         </div>
@@ -97,6 +102,7 @@ export const AddContact = () => {
               placeholder="Enter address"
               onChange={handleInputs}
               name="address"
+              value={inputContacts.address}
             />
           </div>
         </div>
